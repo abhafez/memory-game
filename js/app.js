@@ -13,17 +13,15 @@ var cardIcons = [
 
 var twoCards = [];
 var twoCells = [];
+var matchCells = [];
 var count = 0;
 
 document.querySelector(".restart").addEventListener("click", startNewGame, false);
 
-// removeMe: (open show match).
 function startNewGame() {
-    let gameOver = false,
-        pair = [],
-        match = [],
-        newOrder = shuffle(cardIcons.concat(cardIcons));
-
+    pair = [];
+    match = [];
+    newOrder = shuffle(cardIcons.concat(cardIcons));
     for (let i = 0; i < cards.length; i++) {
         cards[i].childNodes[1].classList.value = "fa " + newOrder[i];
     }
@@ -56,6 +54,8 @@ function checkTwoCards() {
     if (twoCards[0] === twoCards[1]) {
         twoCells.forEach(function (cell) {
             cell.target.classList.value = "card open show match";
+            if (twoCards[0] !== undefined) matchCells.push(twoCards[0]);
+            if (twoCards[0] !== undefined) matchCells.push(twoCards[1]);
             nextTurn();
         });
     } else {
@@ -71,16 +71,20 @@ function checkTwoCards() {
 }
 
 function nextTurn() {
+    checkWin();
     twoCards = [];
     twoCells = [];
     count += 1;
-    document.querySelector(".moves").innerHTML = count/2;
+    document.querySelector(".moves").innerHTML = count / 2;
 }
 
-function flipBackTwo() {
+function checkWin() {
+    if (matchCells.length === 16) gameOver();
+};
+
+function gameOver() {
 
 }
-
 
 function showAllCards() {
     // This function is used in every new game for 6 seconds
