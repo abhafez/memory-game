@@ -10,11 +10,13 @@ var cardIcons = [
     "fa-bicycle",
     "fa-bomb"
 ];
-
+const star1 = document.getElementById("star1");
+const star2 = document.getElementById("star2");
+const star3 = document.getElementById("star3");
 var twoCards = [];
 var twoCells = [];
 var matchCells = [];
-var count = 0;
+var movesCount = 0;
 
 document.querySelector(".restart").addEventListener("click", startNewGame, false);
 
@@ -22,6 +24,7 @@ function startNewGame() {
     document.querySelector(".moves").innerHTML = 0;
     pair = [];
     match = [];
+    fullStars();
     newOrder = shuffle(cardIcons.concat(cardIcons));
     for (let i = 0; i < cards.length; i++) {
         cards[i].childNodes[1].classList.value = "fa " + newOrder[i];
@@ -40,6 +43,12 @@ function play() {
     cards.forEach(function (card) {
         card.addEventListener("click", showCard, false);
     })
+}
+
+function fullStars() {
+    star1.classList.value = "fa fa-star";
+    star2.classList.value = "fa fa-star";
+    star3.classList.value = "fa fa-star";
 }
 
 function showCard(cell) {
@@ -75,8 +84,9 @@ function nextTurn() {
     checkWin();
     twoCards = [];
     twoCells = [];
-    count += 1;
-    document.querySelector(".moves").innerHTML = count / 2;
+    movesCount += 1;
+    document.querySelector(".moves").innerHTML = movesCount / 2;
+    calculateStars();
 }
 
 function checkWin() {
@@ -86,6 +96,25 @@ function checkWin() {
 function gameOver() {
     // todo: code the congratulation message
 }
+
+
+
+function calculateStars() {
+    let fails = (movesCount - (matchCells.length));
+
+    switch (fails) {
+        case 6:
+            star1.classList.value = "fa fa-star-o";
+            break;
+        case 10:
+            star2.classList.value = "fa fa-star-o";
+            break;
+        case 14:
+            star3.classList.value = "fa fa-star-o";
+            break;
+    }
+}
+
 
 function showAllCards() {
     // This function is used in every new game for 6 seconds
