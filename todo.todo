@@ -8,18 +8,20 @@ Restart Button:
 ☐ A restart button allows the player to reset the game board, the timer, and the star rating.
 
 Star Rating:
-☐ The game displays a star rating (from 1-3) that reflects the player's performance. At the beginning of a game, it should display 3 stars. After some number of moves, it should change to a 2 star rating. After a few more moves, it should change to a 1 star rating.
+☐ The game displays a star rating (from 1-3) that reflects the player's performance. At the beginning of a game,
+    it should display 3 stars. After some number of moves, it should change to a 2 star rating.
+    After a few more moves, it should change to a 1 star rating.
 ☐ The number of moves needed to change the rating is up to you, but it should happen at some point.
 
 Timer:
 ☐ When the player starts a game, a displayed timer should also start. Once the player wins the game, the timer stops.
 
 Move Counter:
-☐ Game displays the current number of moves a user has made.
+✔ Game displays the current number of moves a user has made. @done (2018-3-14 22:00:02)
 
 Interface Design:
 Styling:
-☐ Application uses CSS to style components for the game
+✔ Application uses CSS to style components for the game @done (2018-3-14 22:00:11)
 
 Usability:
 ☐ All application components are usable across modern desktop, tablet, and phone browsers.
@@ -62,8 +64,8 @@ Suggestions to Make Your Project Stand Out!:
 
 
 
-☐ CREATE A NEW SHUFFLED LIST OF 16 ICON.
-☐ SHOW CARDS FOR xx SECONDS.
+✔ CREATE A NEW SHUFFLED LIST OF 16 ICON. @done (2018-3-14 22:01:57)
+✔ SHOW CARDS FOR xx SECONDS. @done (2018-3-14 22:02:01)
 ☐ INITIATE A TIMER AND FLIP CARDS
-☐ LISTEN TO USER'S CLICK ON CARD (similar X different)
+✔ LISTEN TO USER'S CLICK ON CARD (similar X different) @done (2018-3-14 22:02:09)
 ☐ check win @win stop timer & pop up congratulation msg & ask if the player wants to play again.

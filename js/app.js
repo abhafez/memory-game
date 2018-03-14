@@ -19,6 +19,7 @@ var count = 0;
 document.querySelector(".restart").addEventListener("click", startNewGame, false);
 
 function startNewGame() {
+    document.querySelector(".moves").innerHTML = 0;
     pair = [];
     match = [];
     newOrder = shuffle(cardIcons.concat(cardIcons));
@@ -27,7 +28,6 @@ function startNewGame() {
     }
 
     showAllCards();
-
 
     setTimeout(() => {
         flipBackAll();
@@ -53,7 +53,7 @@ function showCard(cell) {
 function checkTwoCards() {
     if (twoCards[0] === twoCards[1]) {
         twoCells.forEach(function (cell) {
-            cell.target.classList.value = "card open show match";
+            cell.target.classList.value = "card open show match tada animated";
             if (twoCards[0] !== undefined) matchCells.push(twoCards[0]);
             if (twoCards[0] !== undefined) matchCells.push(twoCards[1]);
             nextTurn();
@@ -61,6 +61,7 @@ function checkTwoCards() {
     } else {
 
         twoCells.forEach(function (cell) {
+            cell.target.classList.value = "card open show nomatch shake animated";
             setTimeout(() => {
                 cell.target.addEventListener("click", showCard, false);
                 cell.target.classList.value = "card";
@@ -83,7 +84,7 @@ function checkWin() {
 };
 
 function gameOver() {
-
+    // todo: code the congratulation message
 }
 
 function showAllCards() {
