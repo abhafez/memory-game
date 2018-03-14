@@ -56,9 +56,7 @@ function checkTwoCards() {
     if (twoCards[0] === twoCards[1]) {
         twoCells.forEach(function (cell) {
             cell.target.classList.value = "card open show match";
-            twoCards = [];
-            twoCells = [];
-            count += 1;
+            nextTurn();
         });
     } else {
 
@@ -67,11 +65,16 @@ function checkTwoCards() {
                 cell.target.addEventListener("click", showCard, false);
                 cell.target.classList.value = "card";
             }, 500); {}
-            twoCards = [];
-            twoCells = [];
-            count += 1;
+            nextTurn();
         });
     }
+}
+
+function nextTurn() {
+    twoCards = [];
+    twoCells = [];
+    count += 1;
+    document.querySelector(".moves").innerHTML = count/2;
 }
 
 function flipBackTwo() {
