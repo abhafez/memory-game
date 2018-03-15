@@ -1,4 +1,5 @@
 var cards = document.querySelectorAll(".card");
+const theTimer = document.querySelector(".timer");
 
 var cardIcons = [
     "fa-diamond",
@@ -17,10 +18,36 @@ var twoCards = [];
 var twoCells = [];
 var matchCells = [];
 var movesCount = 0;
+var timer = [0, 0, 0, 0];
+var interval;
+var timerRunning = false;
+var timeMessage = "";
+
+
+function runTimer() {
+    let currentTime = zeroCompletion(timer[0]) + ":" + zeroCompletion(timer[1]) + ":" + zeroCompletion(timer[2]);
+    theTimer.innerHTML = currentTime;
+    timer[3]++;
+
+    timer[0] = Math.floor((timer[3] / 100) / 60);
+    timer[1] = Math.floor((timer[3] / 100) - (timer[0] * 60));
+    timer[2] = Math.floor(timer[3] - (timer[1] * 100) - (timer[0] * 6000));
+}
+
+function zeroCompletion(time) {
+    if (time <= 9) {
+        time = "0" + time;
+    }
+    return time;
+}
 
 document.querySelector(".restart").addEventListener("click", startNewGame, false);
 
 function startNewGame() {
+    theTimer.innerHTML = "00:00:00";
+    timeMessage = "";
+    clearInterval(interval);
+    timer = [0, 0, 0, 0];
     document.querySelector(".moves").innerHTML = 0;
     pair = [];
     match = [];
@@ -35,6 +62,8 @@ function startNewGame() {
     setTimeout(() => {
         flipBackAll();
         play();
+        timerRunning = true;
+        interval = setInterval(runTimer, 10);
     }, 2000);
     // todo: make 6000 before submit.
 }
@@ -43,6 +72,7 @@ function play() {
     cards.forEach(function (card) {
         card.addEventListener("click", showCard, false);
     })
+
 }
 
 function fullStars() {
@@ -94,10 +124,24 @@ function checkWin() {
 };
 
 function gameOver() {
+
+    createWinningMessage();
+    timerRunning = false;
+    clearInterval(interval);
     // todo: code the congratulation message
 }
 
-
+function createWinningMessage() {
+    let timeEstimated = document.querySelector(".timer").innerHTML;
+    let splittedTime = timeEstimated.split(":");
+    if (splittedTime[0] === "00") {
+        timeMessage = `${Number(splittedTime[1])} seconds ${Number(splittedTime[2])} ms`;
+        console.log(timeMessage);
+    } else {
+        timeMessage = `${Number(splittedTime[0])} minutes ${Number(splittedTime[1])} seconds ${Number(splittedTime[2])} ms`;
+        console.log(timeMessage);
+    }
+}
 
 function calculateStars() {
     let fails = (movesCount - (matchCells.length));
