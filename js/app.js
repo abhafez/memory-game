@@ -64,8 +64,7 @@ function startNewGame() {
         play();
         timerRunning = true;
         interval = setInterval(runTimer, 10);
-    }, 2000);
-    // todo: make 6000 before submit.
+    }, 6000);
 }
 
 function play() {
@@ -124,36 +123,40 @@ function checkWin() {
 };
 
 function gameOver() {
-
-    createWinningMessage();
     timerRunning = false;
     clearInterval(interval);
-    // todo: code the congratulation message
+    createWinningMessage();
 }
 
 function createWinningMessage() {
+    let moves = Math.round(movesCount/2);
+
     let timeEstimated = document.querySelector(".timer").innerHTML;
     let splittedTime = timeEstimated.split(":");
     if (splittedTime[0] === "00") {
         timeMessage = `${Number(splittedTime[1])} seconds ${Number(splittedTime[2])} ms`;
-        console.log(timeMessage);
     } else {
         timeMessage = `${Number(splittedTime[0])} minutes ${Number(splittedTime[1])} seconds ${Number(splittedTime[2])} ms`;
-        console.log(timeMessage);
     }
+
+    let stars = document.querySelectorAll(".fa-star");
+    let starCount = stars.length;
+
+    return `Congratulations! You Won!
+        with ${moves} moves and ${starCount} stars in ${timeMessage}`
 }
 
 function calculateStars() {
     let fails = (movesCount - (matchCells.length));
 
     switch (fails) {
-        case 6:
+        case 8:
             star1.classList.value = "fa fa-star-o";
             break;
-        case 10:
+        case 16:
             star2.classList.value = "fa fa-star-o";
             break;
-        case 14:
+        case 20:
             star3.classList.value = "fa fa-star-o";
             break;
     }
@@ -170,7 +173,7 @@ function showAllCards() {
 function flipBackAll() {
     // Hide all cards to start the game.
     for (const card of cards) {
-        console.log(card.classList.value = "card");
+        card.classList.value = "card";
     }
 }
 
