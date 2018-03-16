@@ -1,3 +1,4 @@
+'use strict';
 var cards = document.querySelectorAll(".card");
 const theTimer = document.querySelector(".timer");
 
@@ -49,10 +50,8 @@ function startNewGame() {
     clearInterval(interval);
     timer = [0, 0, 0, 0];
     document.querySelector(".moves").innerHTML = 0;
-    pair = [];
-    match = [];
     fullStars();
-    newOrder = shuffle(cardIcons.concat(cardIcons));
+    let newOrder = shuffle(cardIcons.concat(cardIcons));
     for (let i = 0; i < cards.length; i++) {
         cards[i].childNodes[1].classList.value = "fa " + newOrder[i];
     }
@@ -142,8 +141,7 @@ function createWinningMessage() {
     let stars = document.querySelectorAll(".fa-star");
     let starCount = stars.length;
 
-    return `Congratulations! You Won!
-        with ${moves} moves and ${starCount} stars in ${timeMessage}`
+    return `with ${moves} moves and ${starCount} stars in ${timeMessage}`
 }
 
 function calculateStars() {
