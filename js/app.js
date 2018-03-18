@@ -24,7 +24,7 @@ var interval;
 var timerRunning = false;
 var timeMessage = "";
 
-
+/** Timer related functions */
 function runTimer() {
     let currentTime = zeroCompletion(timer[0]) + ":" + zeroCompletion(timer[1]) + ":" + zeroCompletion(timer[2]);
     theTimer.innerHTML = currentTime;
@@ -40,8 +40,7 @@ function zeroCompletion(time) {
         time = "0" + time;
     }
     return time;
-}
-
+} /**End of timer */
 document.querySelector(".restart").addEventListener("click", startNewGame, false);
 
 function startNewGame() {
@@ -92,7 +91,7 @@ function checkTwoCards() {
         twoCells.forEach(function (cell) {
             cell.target.classList.value = "card open show match tada animated";
             if (twoCards[0] !== undefined) matchCells.push(twoCards[0]);
-            if (twoCards[0] !== undefined) matchCells.push(twoCards[1]);
+            if (twoCards[1] !== undefined) matchCells.push(twoCards[1]);
             nextTurn();
         });
     } else {
@@ -124,11 +123,13 @@ function checkWin() {
 function gameOver() {
     timerRunning = false;
     clearInterval(interval);
+    var inst = $('[data-remodal-id=modal2]').remodal();
+    inst.open();
     createWinningMessage();
 }
 
 function createWinningMessage() {
-    let moves = Math.round(movesCount/2);
+    let moves = Math.round(movesCount / 2);
 
     let timeEstimated = document.querySelector(".timer").innerHTML;
     let splittedTime = timeEstimated.split(":");
@@ -169,7 +170,7 @@ function showAllCards() {
 }
 
 function flipBackAll() {
-    // Hide all cards to start the game.
+    // Hide all cards to start the playing.
     for (const card of cards) {
         card.classList.value = "card";
     }

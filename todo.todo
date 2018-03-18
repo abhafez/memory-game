@@ -37,7 +37,7 @@ Comments:
 Code Quality:
 ☐ Code is formatted with consistent, logical, and easy-to-read formatting as described in the Udacity JavaScript Style Guide.
 Suggestions to Make Your Project Stand Out!:
-☐ Add CSS animations when cards are clicked, unsuccessfully matched, and successfully matched.
+✔ Add CSS animations when cards are clicked, unsuccessfully matched, and successfully matched. @done (2018-3-17 19:15:40)
 ☐ Add unique functionality beyond the minimum requirements (Implement a leaderboard, store game state using local storage, etc.)
 ☐ Implement additional optimizations that improve the performance and user experience of the game (keyboard shortcuts for gameplay, etc).
 
