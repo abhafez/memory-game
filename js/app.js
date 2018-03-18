@@ -23,6 +23,8 @@ var timer = [0, 0, 0, 0];
 var interval;
 var timerRunning = false;
 var timeMessage = "";
+var winningMessage;
+var showTime;
 
 /** Timer related functions */
 function runTimer() {
@@ -44,9 +46,12 @@ function zeroCompletion(time) {
 document.querySelector(".restart").addEventListener("click", startNewGame, false);
 
 function startNewGame() {
+    clearTimeout(showTime);
+    clearInterval(interval);
     theTimer.innerHTML = "00:00:00";
     timeMessage = "";
-    clearInterval(interval);
+    matchCells = [];
+    movesCount = 0;
     timer = [0, 0, 0, 0];
     document.querySelector(".moves").innerHTML = 0;
     fullStars();
@@ -57,7 +62,7 @@ function startNewGame() {
 
     showAllCards();
 
-    setTimeout(() => {
+    showTime = setTimeout(() => {
         flipBackAll();
         play();
         timerRunning = true;
@@ -123,9 +128,10 @@ function checkWin() {
 function gameOver() {
     timerRunning = false;
     clearInterval(interval);
-    var inst = $('[data-remodal-id=modal2]').remodal();
-    inst.open();
-    createWinningMessage();
+    // createWinningMessage();
+    document.getElementById("modal2Desc").innerHTML = createWinningMessage();
+    winningMessage = $('[data-remodal-id=modal2]').remodal();
+    winningMessage.open();
 }
 
 function createWinningMessage() {
@@ -134,15 +140,15 @@ function createWinningMessage() {
     let timeEstimated = document.querySelector(".timer").innerHTML;
     let splittedTime = timeEstimated.split(":");
     if (splittedTime[0] === "00") {
-        timeMessage = `${Number(splittedTime[1])} seconds ${Number(splittedTime[2])} ms`;
+        timeMessage = `${Number(splittedTime[1])}.${Number(splittedTime[2])} seconds`;
     } else {
-        timeMessage = `${Number(splittedTime[0])} minutes ${Number(splittedTime[1])} seconds ${Number(splittedTime[2])} ms`;
+        timeMessage = `${Number(splittedTime[0])} minutes ${Number(splittedTime[1])}.${Number(splittedTime[2])} seconds`;
     }
 
     let stars = document.querySelectorAll(".fa-star");
     let starCount = stars.length;
 
-    return `with ${moves} moves and ${starCount} stars in ${timeMessage}`
+    return `With ${moves} Moves and ${starCount} stars in ${timeMessage}`
 }
 
 function calculateStars() {
@@ -190,3 +196,10 @@ function shuffle(array) {
 
     return array;
 }
+
+function playAgain() {
+    winningMessage.close();
+    startNewGame();
+}
+
+document.querySelector(".remodal-confirm").addEventListener("click", playAgain, false);
