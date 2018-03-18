@@ -43,18 +43,12 @@ function zeroCompletion(time) {
     }
     return time;
 } /**End of timer */
+
 document.querySelector(".restart").addEventListener("click", startNewGame, false);
+document.querySelector(".remodal-confirm").addEventListener("click", playAgain, false);
 
 function startNewGame() {
-    clearTimeout(showTime);
-    clearInterval(interval);
-    theTimer.innerHTML = "00:00:00";
-    timeMessage = "";
-    matchCells = [];
-    movesCount = 0;
-    timer = [0, 0, 0, 0];
-    document.querySelector(".moves").innerHTML = 0;
-    fullStars();
+    resetGame();
     let newOrder = shuffle(cardIcons.concat(cardIcons));
     for (let i = 0; i < cards.length; i++) {
         cards[i].childNodes[1].classList.value = "fa " + newOrder[i];
@@ -70,11 +64,22 @@ function startNewGame() {
     }, 6000);
 }
 
+function resetGame() {
+    clearTimeout(showTime);
+    clearInterval(interval);
+    theTimer.innerHTML = "00:00:00";
+    timeMessage = "";
+    matchCells = [];
+    movesCount = 0;
+    timer = [0, 0, 0, 0];
+    document.querySelector(".moves").innerHTML = 0;
+    fullStars();
+}
+
 function play() {
     cards.forEach(function (card) {
         card.addEventListener("click", showCard, false);
     })
-
 }
 
 function fullStars() {
@@ -155,13 +160,13 @@ function calculateStars() {
     let fails = (movesCount - (matchCells.length));
 
     switch (fails) {
-        case 8:
+        case 4:
             star1.classList.value = "fa fa-star-o";
             break;
-        case 16:
+        case 8:
             star2.classList.value = "fa fa-star-o";
             break;
-        case 20:
+        case 16:
             star3.classList.value = "fa fa-star-o";
             break;
     }
@@ -201,5 +206,3 @@ function playAgain() {
     winningMessage.close();
     startNewGame();
 }
-
-document.querySelector(".remodal-confirm").addEventListener("click", playAgain, false);

@@ -135,12 +135,12 @@
 
 .remodal-confirm {
     color: #fff;
-    background: #81c784;
+    background: #af1414;
 }
 
 .remodal-confirm:hover,
 .remodal-confirm:focus {
-    background: #66bb6a;
+    background: #69313f;
 }
 
 .remodal-cancel {

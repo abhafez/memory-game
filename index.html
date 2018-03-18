@@ -8,11 +8,11 @@
     <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.1/css/font-awesome.min.css" rel="stylesheet prefetch">
     <link href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.5.2/animate.min.css" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css?family=Nunito" rel="stylesheet">
+    <link href="css/remodal-default-theme.css" rel="stylesheet">
+    <link href="css/app.css" rel="stylesheet">
     <meta name="description" content="Memory game">
     <meta name="author" content="Abdurrahman Hafz">
-    <link href="css/app.css" rel="stylesheet">
-    <link rel="stylesheet" href="css/remodal-default-theme.css">
-    <link rel="stylesheet" href="css/remodal.css">
+    <link href="css/remodal.css" rel="stylesheet">
 </head>
 
 <body>
@@ -96,30 +96,14 @@
             </ul>
         </div>
     </div>
-    <div data-remodal-id="modal2" role="dialog" aria-labelledby="modal2Title" aria-describedby="modal2Desc">
+    <div data-remodal-id="modal2" role="dialog" aria-describedby="modal2Desc" aria-labelledby="modal2Title">
         <div>
             <h2 id="modal2Title">Congratulations! You Won!</h2>
-            <p id="modal2Desc">
-                
-            </p>
+            <p id="modal2Desc"></p>
         </div>
         <br>
-        <button data-remodal-action="confirm" class="remodal-confirm">Play Again ?</button>
+        <button class="remodal-confirm" data-remodal-action="confirm">Play Again ?</button>
     </div>
-    <!-- <script>
-        window.REMODAL_GLOBALS = {
-            NAMESPACE: 'remodal',
-            DEFAULTS: {
-                hashTracking: true,
-                closeOnConfirm: true,
-                closeOnCancel: true,
-                closeOnEscape: true,
-                closeOnOutsideClick: true,
-                modifier: ''
-            }
-        };
-    </script> -->
-
     <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
     <script>
         window.jQuery || document.write('<script src="js/jquery-1.11.2.min.js"><\/script>')
