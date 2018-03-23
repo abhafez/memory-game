@@ -26,6 +26,7 @@ var timeMessage = "";
 var winningMessage;
 var showTime;
 
+document.onload = startNewGame();
 /** Timer related functions */
 function runTimer() {
     let currentTime = zeroCompletion(timer[0]) + ":" + zeroCompletion(timer[1]) + ":" + zeroCompletion(timer[2]);
