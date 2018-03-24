@@ -80,7 +80,7 @@ function resetGame() {
 function play() {
     cards.forEach(function (card) {
         card.addEventListener("click", showCard, false);
-    })
+    });
 }
 
 function fullStars() {
@@ -154,7 +154,7 @@ function createWinningMessage() {
     let stars = document.querySelectorAll(".fa-star");
     let starCount = stars.length;
 
-    return `With ${moves} Moves and ${starCount} stars in ${timeMessage}`
+    return `With ${moves} Moves and ${starCount} stars in ${timeMessage}`;
 }
 
 function calculateStars() {
@@ -164,11 +164,8 @@ function calculateStars() {
         case 4:
             star1.classList.value = "fa fa-star-o";
             break;
-        case 8:
+        case 10:
             star2.classList.value = "fa fa-star-o";
-            break;
-        case 16:
-            star3.classList.value = "fa fa-star-o";
             break;
     }
 }
